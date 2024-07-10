@@ -29,7 +29,8 @@ public class Coche implements Serializable {
     @Column (name = "NUMERO_SERIE", nullable = false, unique = true)
     private String numeroSerie;
     @Column (name = "MATRICULA", nullable = false, unique = true)
-    @Pattern (regexp = "[0-9]{4}[A-Z]{3}", message = "Sólo 4 valores numéricos y 3 alfabéticos")
+    @NotNull (message = "La matrícula no puede ser nula")
+    @Pattern (regexp = "^[0-9]{4}[A-Z]{3}$", message = "La matrícula ha de tener 4 valores numéricos y 3 alfabéticos en mayúsculas")
     private String matricula;
     @Column (name = "ETIQUETA", nullable = false)
     @NotNull(message = "La etiqueta no puede ser nula")
