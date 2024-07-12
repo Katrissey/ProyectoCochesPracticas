@@ -11,5 +11,6 @@ import com.concensionario.cursospring.entity.Cliente;
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
     public Optional<Cliente> findById(Long id);
+    
 
 }

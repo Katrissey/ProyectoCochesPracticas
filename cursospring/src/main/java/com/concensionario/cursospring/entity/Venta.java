@@ -34,16 +34,25 @@ public class Venta implements Serializable {
     @Temporal(TemporalType.TIMESTAMP) 
     private LocalDateTime fechaVenta; 
  
-    // Constructor vacío 
+    // Constructor vacío, necesario para las java beans
     public Venta() {} 
  
-    // Constructor sin id 
+    // Constructor con todos los atributos salvo el id 
     public Venta(Cliente cliente, Coche coche) { 
         this.cliente = cliente; 
         this.coche = coche; 
         this.fechaVenta = LocalDateTime.now(); 
     }
+    
+    //Constructor con todos los atributos
+    public Venta(Long id, Cliente cliente, Coche coche, LocalDateTime fechaVenta) {
+        this.id = id;
+        this.cliente = cliente;
+        this.coche = coche;
+        this.fechaVenta = fechaVenta;
+    }
 
+    //Getters y Setters
     public Long getId() {
         return id;
     }
@@ -74,6 +83,12 @@ public class Venta implements Serializable {
 
     public void setFechaVenta(LocalDateTime fechaVenta) {
         this.fechaVenta = fechaVenta;
+    }
+
+    //To String
+    @Override
+    public String toString() {
+        return "Venta [id=" + id + ", cliente=" + cliente + ", coche=" + coche + ", fechaVenta=" + fechaVenta + "]";
     }
 
     

@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.concensionario.cursospring.entity.Coche;
 import com.concensionario.cursospring.repository.CocheRepository;
+
 @Service
 public class CocheService {
+    
     @Autowired
     private CocheRepository cocheRep;
 
@@ -17,13 +19,11 @@ public class CocheService {
         return coches;
     }
 
-    public Coche crearCoche (Coche coche){
+    public void crearCoche (Coche coche){
 
-        String combis = combustiblecoche.getCombustu();
+        String combustible = coche.getCombustible();
         
-
-
-        return cocheRep.save(coche);
+        Coche cocheCreado = cocheRep.save(coche);
     }
 
     

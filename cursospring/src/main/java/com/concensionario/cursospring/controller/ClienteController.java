@@ -8,6 +8,7 @@ import com.concensionario.cursospring.entity.Cliente;
 import com.concensionario.cursospring.service.ClienteService;
 
 @Controller
+@RequestMapping("/clienteController")
 public class ClienteController {
     
     @Autowired

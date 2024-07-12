@@ -30,20 +30,22 @@ public class Coche implements Serializable {
     private String numeroSerie;
     @Column (name = "MATRICULA", nullable = false, unique = true)
     @NotNull (message = "La matrícula no puede ser nula")
-    @Pattern (regexp = "^[0-9]{4}[A-Z]{3}$", message = "La matrícula ha de tener 4 valores numéricos y 3 alfabéticos en mayúsculas")
+    @Pattern(regexp = "^[0-9]{4}[BCDFGHJKLMNPRSTVWXYZ]{3}$", message = "La matrícula ha de tener 4 valores numéricos y 3 alfabéticos en mayúsculas (excluyendo vocales, Ñ y Q)")
     private String matricula;
-    @Column (name = "ETIQUETA", nullable = false)
+    @Column(name = "ETIQUETA", nullable = false)
     @NotNull(message = "La etiqueta no puede ser nula")
-    @Size(min = 1, max = 1, message = "La etiqueta debe tener un solo carácter")
+    @Pattern(regexp = "^(0|ECO|C|B|A)$", message = "La etiqueta debe ser uno de los siguientes valores: 0, ECO, C, B, A")
     private String etiqueta;
     @Column (name = "PRECIO")
     private double precio;
     @Column (name = "EXPOSICION")
     private boolean exposicion;
     @Column (name = "COMBUSTIBLE", nullable = false)
+    @NotNull(message = "El combustible no puede ser nulo")
+    @Pattern(regexp = "^(ELECTRICO|HIBRIDO|DIESEL|GASOLINA)$", message = "El tipo de combustible debe ser uno de los siguientes valores: ELECTRICO, HIBRIDO, DIESEL|, GASOLINA")
     private String combustible;
 
-    // Constructor vacío
+    // Constructor vacío, necesario para los java beans
     public Coche() {}
 
     
@@ -63,7 +65,7 @@ public class Coche implements Serializable {
     }
 
 
-    // Constructor con parámetros
+    // Constructor con todos los atributos salvo la id
     public Coche(String marca, String modelo, String color, String numeroSerie, String matricula, String etiqueta,
                  double precio, boolean exposicion, String combustible) {
         this.marca = marca;
@@ -77,6 +79,7 @@ public class Coche implements Serializable {
         this.combustible = combustible;
     }
 
+    //Getters y Setters
     public Long getId() {
         return id;
     }
@@ -163,5 +166,15 @@ public class Coche implements Serializable {
         this.combustible = combustible;
     }
 
+    //To String
+    @Override
+    public String toString() {
+        return "Coche [id=" + id + ", marca=" + marca + ", modelo=" + modelo + ", color=" + color + ", numeroSerie="
+                + numeroSerie + ", matricula=" + matricula + ", etiqueta=" + etiqueta + ", precio=" + precio
+                + ", exposicion=" + exposicion + ", combustible=" + combustible + "]";
+    }
+
+
+    
 }
 
